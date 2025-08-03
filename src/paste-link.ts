@@ -13,6 +13,6 @@ export default async function main() {
     await Clipboard.paste(modifiedClipboardText);
     await showHUD("格式转换完成");
   } else {
-    await showHUD("未找到匹配格式的内容");
+    await showHUD(`未找到匹配格式的内容`);
   }
 }

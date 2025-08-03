@@ -2,6 +2,7 @@ import { transformToMarkdownLink } from "./transform-to-markdown-link";
 
 // 1. 定义测试用例表
 const testCases = [
+  // 原有的书名号格式测试用例
   {
     name: "标准情况",
     input: "《一个很棒的标题》https://example.com",
@@ -27,11 +28,42 @@ const testCases = [
     input: "《》https://example.com/empty",
     expected: "[](https://example.com/empty)",
   },
+  
+  // 新增的尖括号格式测试用例
   {
-    name: "不匹配的格式 - 括号错误",
-    input: "【错误括号】https://example.com",
-    expected: "【错误括号】https://example.com", // 应返回原字符串
+    name: "尖括号格式",
+    input: "〈美好的一天〉https://myblog.com/nice-day",
+    expected: "[美好的一天](https://myblog.com/nice-day)",
   },
+  {
+    name: "尖括号格式带空格",
+    input: "  〈带空格的标题〉 https://example.com  ",
+    expected: "[带空格的标题](https://example.com)",
+  },
+  {
+    name: "尖括号格式带额外文字",
+    input: "〈标题〉 描述文字 https://example.com",
+    expected: "[标题](https://example.com)",
+  },
+  
+  // 新增的无括号格式测试用例
+  {
+    name: "无括号格式",
+    input: "美好的一天https://myblog.com/nice-day",
+    expected: "[美好的一天](https://myblog.com/nice-day)",
+  },
+  {
+    name: "无括号格式带空格",
+    input: " 美好的一天   https://myblog.com/nice-day",
+    expected: "[美好的一天](https://myblog.com/nice-day)",
+  },
+  {
+    name: "无括号格式带额外空格",
+    input: "标题文字    https://example.com",
+    expected: "[标题文字](https://example.com)",
+  },
+  
+  // 边界情况测试用例
   {
     name: "不匹配的格式 - 只有标题",
     input: "《只有一个标题》",
