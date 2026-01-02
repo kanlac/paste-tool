@@ -12,6 +12,12 @@
       "title": "Paste Link",
       "description": "Analyze text and paste as a MarkDown link",
       "mode": "no-view"
+    },
+    {
+      "name": "quote-block",
+      "title": "Quote Block",
+      "description": "Wrap selected text with a timestamped quote block",
+      "mode": "no-view"
     }
   ],
   "dependencies": {
